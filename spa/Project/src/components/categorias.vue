@@ -1,7 +1,5 @@
 <template>
   <div id="categorias">
-  Aqui van todas las categorías listadas.
-
   <b-list-group>
   <b-list-group-item class="d-flex justify-content-between align-items-center">
     Cantantes
@@ -19,7 +17,7 @@
   </b-list-group-item>
 
   <b-list-group-item class="d-flex justify-content-between align-items-center">
-    Actrices eroticas
+    Compositores
     <b-badge variant="primary" pill>∞</b-badge>
   </b-list-group-item>
 </b-list-group>
@@ -39,6 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: auto;
+  padding-right: auto;
 }
 </style>
