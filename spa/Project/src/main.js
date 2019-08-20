@@ -10,15 +10,19 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 //import the hello component
-import HelloWorld from './components/HelloWorld'
+import inicio from './components/inicio'
 //import the about component
-import About from './components/About'
+import artistas from './components/artistas'
+//Importa el componente de las categorias
+import categorias from './components/categorias'
 //define your routes
 const routes = [
 //define the root url of the application.
-{ path: '/', component: HelloWorld },
+{ path: '/', component: inicio },
 //route for the about route of the web page
-{ path: '/about', component: About }
+{ path: '/artistas', component: artistas },
+//Define la ruta de la pestaña categorias
+{ path: '/categorias', component: categorias }
 ]
 
 // Create the router instance and pass the `routes` option
