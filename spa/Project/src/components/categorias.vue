@@ -18,8 +18,9 @@
 
   <b-list-group-item class="d-flex justify-content-between align-items-center">
     Compositores
-    <b-badge variant="primary" pill>∞</b-badge>
+    <b-badge variant="primary" pill>9</b-badge>
   </b-list-group-item>
+  
 </b-list-group>
   </div>
 </template>
