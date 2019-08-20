@@ -7,8 +7,13 @@ import App from './App'
 //import the vue router
 import VueRouter from 'vue-router'
 //tell vue to use the router
-
+import BootstrapVue from 'bootstrap-vue'
 Vue.use(VueRouter)
+Vue.use(BootstrapVue) // si se putea es acá
+//Importando Boostrap
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 //import the hello component
 import inicio from './components/inicio'
 //import the about component
