@@ -1,7 +1,7 @@
 <template>
 
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" variant="info" class="fixed-top">
     <b-navbar-brand v-bind:to="'/'">ArtCase</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
