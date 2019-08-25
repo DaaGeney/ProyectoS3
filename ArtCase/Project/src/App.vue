@@ -59,4 +59,3 @@ export default {
   color: aliceblue;
 }
 </style>
-If we look at the above code, we would notice some differences from the code which was auto-generated there, these differenc
