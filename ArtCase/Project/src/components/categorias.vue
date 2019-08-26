@@ -1,5 +1,5 @@
 <template>
-  <div id="categorias" >
+  <div class="categorias" >
     <b-list-group>
   <b-list-group-item class="d-flex justify-content-between align-items-center">
     Cantantes
@@ -98,13 +98,17 @@ export default {
 </script>
 <!-- styling for the component -->
 <style>
-#categorias {
+.categorias {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: auto;
-  padding-right: auto;
+  border-right-style: groove;
+  overflow: auto;
+  height: calc(100vh - 56px);
+  width: min-content;
+  position: absolute;
 }
 </style>

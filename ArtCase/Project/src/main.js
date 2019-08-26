@@ -8,11 +8,16 @@ import App from './App'
 import VueRouter from 'vue-router'
 //tell vue to use the router
 import BootstrapVue from 'bootstrap-vue'
+// Libreria que posibilita el uso de la barra lateral
+import VueSidebarMenu from 'vue-sidebar-menu'
+
 Vue.use(VueRouter)
-Vue.use(BootstrapVue) // si se putea es acá
+Vue.use(BootstrapVue) // Utilizado para los estilos de bootstrap
+Vue.use(VueSidebarMenu) //  Utilizado para configurar la barra lateral
 //Importando Boostrap
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 //import the hello component
 import inicio from './components/inicio'
