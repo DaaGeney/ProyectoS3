@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="dark" class="topbar">
+    <b-navbar toggleable="lg" type="dark" variant="dark" sticky="true" class="topbar">
         <b-navbar-brand v-bind:to="'/'">ArtCase</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -42,10 +42,11 @@
 </script>
 
 <style >
-  .topbar{
-    border-top: 5px;
-    border-top-style: inset;
-    border-color: aqua;
+  .sticky-top{
     position: sticky;
+    border-top: 5px;
+    border-top-style: ridge;
+    border-color: crimson;
+    margin-left: -50px;
   }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div class="menus">
-      <Sidebar/>
       <Topbar/>
-    </div>
+      <Sidebar/>
     <div class="contenido">
       <router-view></router-view>
     </div>
@@ -11,8 +9,8 @@
 </template>
 
 <script>
-  import Topbar from './components/topbar'
   import Sidebar from './components/sidebar'
+  import Topbar from './components/topbar'
   export default {
     name: 'app',
     components: {
@@ -30,14 +28,14 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 0px;
-    margin-inline-start: 50px;
+    margin-left : 50px;
   }
   .routerlink{
     color: aliceblue;
   }
 
   .menus{
-
+      
   }
 
   .contenido{
