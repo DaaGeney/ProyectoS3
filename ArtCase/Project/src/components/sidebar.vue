@@ -1,25 +1,14 @@
 <template>
-    <sidebar-menu :menu="menu" />
+    <sidebar-menu 
+    :menu="menu"
+    :collapsed="collapsed" />
 </template>
 
 <script>
     export default {
+        name: 'sidebar',
         data() {
             return {
-                props: {
-                    // Sidebar menu (required)
-                    menu: {
-                        type: Array,
-                        required: true
-                    },
-
-                    // Sidebar Collapse state
-                    collapsed: {
-                        type: Boolean,
-                        default: true
-                    }
-                },
-
                 menu: [
                     {
                         header: true,
@@ -29,7 +18,7 @@
                     {
                         href: '/categorias',
                         title: 'Categorias',
-                        icon: 'fa fa-user'
+                        icon: 'fa fa-code'
                     },
                     {
                         href: '/charts',
@@ -42,7 +31,8 @@
                             }
                         ]
                     }
-                ]
+                ],
+                collapsed:true
             }
         }
     }

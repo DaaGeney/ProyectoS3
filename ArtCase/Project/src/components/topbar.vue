@@ -43,7 +43,9 @@
 
 <style >
   .topbar{
-    padding-left: -50px;
+    border-top: 5px;
+    border-top-style: inset;
+    border-color: aqua;
     position: sticky;
   }
 </style>

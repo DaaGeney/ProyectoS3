@@ -13,7 +13,8 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.28",
     "vue": "^2.6.10",
-    "vue-router": "^3.1.2"
+    "vue-router": "^3.1.2",
+    "vue-sidebar-menu": "^4.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
