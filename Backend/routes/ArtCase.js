@@ -18,7 +18,7 @@ module.exports = app => {
         console.log(req.body);
         db.artCase.insert(newArtcase, (err, response)=>{
             res.json({
-                //artCase
+                //artCase Commit realizado
                 response
             })
         })
