@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="dark" sticky="true" class="topbar">
+    <b-navbar toggleable="lg" type="dark" variant="dark" sticky="true">
         <b-navbar-brand v-bind:to="'/'">ArtCase</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        
+        name: 'topbar'
     }
 </script>
 

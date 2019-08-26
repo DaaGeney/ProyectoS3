@@ -1,7 +1,10 @@
 <template>
-  <div id="app">
-      <Topbar/>
-      <Sidebar/>
+  <div class="app">
+    <!--Banner superior de la aplicación-->
+    <Topbar/> 
+    <!--Banner izquierdo de la aplicación-->
+    <Sidebar/>
+    <!--Define el contenido de la aplicacción (CARGA LAS VISTAS DE LAS RUTAS)-->
     <div class="contenido">
       <router-view></router-view>
     </div>
@@ -9,7 +12,9 @@
 </template>
 
 <script>
+  //Importa el componente de la barra lateral
   import Sidebar from './components/sidebar'
+  //Importa el componente de la barra superior
   import Topbar from './components/topbar'
   export default {
     name: 'app',
@@ -21,24 +26,5 @@
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 0px;
-    margin-left : 50px;
-  }
-  .routerlink{
-    color: aliceblue;
-  }
-
-  .menus{
-      
-  }
-
-  .contenido{
-    padding: 15px;
-  }
+  @import url('/styles/appmain.scss');
 </style>

@@ -1,0 +1,28 @@
+.v-sidebar-menu{
+    top:61px;
+    height: calc(100% - 61px);
+}
+
+.v-sidebar-menu.vsm_expanded .vsm--item_open .vsm--link_level-1,.v-sidebar-menu.vsm_expanded .vsm--item_open .vsm--link_level-1 .vsm--icon{
+    background-color: #2a2a2e;
+}
+
+.v-sidebar-menu .vsm--toggle-btn,.v-sidebar-menu.vsm_collapsed .vsm--mobile-bg,.v-sidebar-menu .vsm--link.vsm--link_level-1.vsm--link_exact-active{
+    background-color: #dc3545;
+}
+
+.v-sidebar-menu .vsm--link.vsm--link_level-1.vsm--link_exact-active{
+    box-shadow:  3px 0px 0px 0px white inset;
+}
+
+.v-sidebar-menu .vsm--toggle-btn:after,.v-sidebar-menu .vsm--arrow:after{
+    font-family: 'FontAwesome';
+}
+
+.v-sidebar-menu .vsm--arrow:after {
+    content: '\f105';
+}
+
+.v-sidebar-menu .vsm--toggle-btn:after {
+    content: "\f0c9";
+}
