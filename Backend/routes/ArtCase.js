@@ -1,22 +1,43 @@
 import mongojs from 'mongojs';
 
 const db = mongojs('DatabaseArtcase',[
-    'artcase'
+    'artista'
 ])
 
 module.exports = app => {
-    app.get('/ArtCase',(req,res)=>{
-       db.artCase.find((err,artCase)=>{
+    
+    
+    app.get('/artista/:id', function (req, res) {
+        let id = req.params.id
+        if (id) {
+            db.artistas.find((err, artista) => {
+               let  respo = artistas.filter(element => element.id.includes(id))
+                console.log("id:" + id);
+
+                res.json({
+                    response: artista
+
+                })
+            });
+        } else {
+            res.send(entidad)
+            console.log("valiendo");
+
+        }
+    })
+    app.get('/artista',(req,res)=>{
+       db.artista.find((err,artista)=>{
         res.json({
-            response: artCase
+            response: artista
         })
        })
     })
 
-    app.post('/ArtCase', (req,res)=>{
+
+    app.post('/artCase', (req,res)=>{
         let newArtcase =req.body;
         console.log(req.body);
-        db.artCase.insert(newArtcase, (err, response)=>{
+        db.artista.insert(newArtcase, (err, response)=>{
             res.json({
                 //artCase Commit realizado
                 response
@@ -25,9 +46,9 @@ module.exports = app => {
         
     })
 
-    app.put('/artcase/:id',(req,res) =>{
+    app.put('/artista/:id',(req,res) =>{
         let updateArtcase = req.body
-        db.artCase.update(
+        db.artista.update(
             {_id: mongojs.ObjectId(req.params.id)},
             updateArtcase,
             {},
@@ -39,12 +60,12 @@ module.exports = app => {
         )
     })
 
-    app.delete('/artcase/:id', (req,res)=>{
-        db.artCase.remove({
+    app.delete('/artista/:id', (req,res)=>{
+        db.artista.remove({
             _id: mongojs.ObjectId(req.params.id)
         }, (err,response)=>{
             res.json({
-                response: 'Eliminado de nuevo'
+                response: 'Eliminado correctamente'
             })
         })
     })
