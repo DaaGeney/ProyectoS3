@@ -5,9 +5,10 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item v-bind:to="'/artistas'">Artistas</b-nav-item>
-            <b-nav-item v-bind:to="'/categorias'">Categorias</b-nav-item>
+        
+           <b-navbar-nav>
+            <b-nav-item v-bind:to="'/registrarartista'">Registrar artistas</b-nav-item>
+            <b-nav-item v-bind:to="'/registrarusuario'">Registrar usuarios</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -24,12 +25,14 @@
               <b-dropdown-item href="#">FA</b-dropdown-item>
             </b-nav-item-dropdown>
 
-            <b-nav-item-dropdown right>
-              <!-- Using 'button-content' slot -->
+            <!--
+              <b-nav-item-dropdown right>
+              Using 'button-content' slot
               <template slot="button-content"><em>Usuario</em></template>
               <b-dropdown-item href="#">Perfil</b-dropdown-item>
               <b-dropdown-item href="#">Salir</b-dropdown-item>
-            </b-nav-item-dropdown>
+            </b-nav-item-dropdown>                                     
+            -->
           </b-navbar-nav>
         </b-collapse>
     </b-navbar>

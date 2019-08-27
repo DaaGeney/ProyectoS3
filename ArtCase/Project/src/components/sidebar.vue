@@ -11,7 +11,7 @@
             return {
                 menu: [
                     {
-                        href: { path: '/categorias' },
+                        href: { path: '/artistas' },
                         title: 'Categorias',
                         icon: 'fas fa-sort-alpha-down',
                         child: [

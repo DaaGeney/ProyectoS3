@@ -8,14 +8,14 @@ module.exports = app => {
     
     
     app.get('/artista/:id', (req, res) => {
-        
-        db.artista.filter({
+        db.artista.find({
             _id: mongojs.ObjectId(req.params.id)
         }, (err, response) => {
             res.json({
                 response: response
             })
-    })})
+        })
+    })
 
     app.get('/artista',(req,res)=>{
        db.artista.find((err,artista)=>{
