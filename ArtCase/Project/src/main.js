@@ -16,6 +16,10 @@ import inicio from './components/inicio'
 import artistas from './components/artistas'
 //Importa el componente de las categorias
 import categorias from './components/categorias'
+//Importa el componente del registro de artistas
+import registroartista from './components/registroArtista'
+//Importa el componente del registro de usuarios
+import registrousuario from './components/registroUsuario'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
  
@@ -26,7 +30,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 Vue.use(VueAxios, axios)
-
 Vue.use(VueRouter) //Controla las rutas
 Vue.use(BootstrapVue) // Utilizado para los estilos de bootstrap
 Vue.use(VueSidebarMenu) //  Utilizado para configurar la barra lateral
@@ -38,7 +41,11 @@ const routes = [
 //route for the about route of the web page
 { path: '/artistas', component: artistas },
 //Define la ruta de la pestaña categorias
-{ path: '/categorias', component: categorias }
+{ path: '/categorias', component: categorias },
+//Define la ruta de la pestaña registro de artistas
+{ path: '/registrarartista', component: registroartista },
+//Define la ruta de la pestaña registro de usuarios
+{ path: '/registrarusuario', component: registrousuario }
 ]
 
 // Create the router instance and pass the `routes` option
