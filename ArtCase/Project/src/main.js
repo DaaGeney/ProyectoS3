@@ -12,8 +12,10 @@ import BootstrapVue from 'bootstrap-vue'
 import VueSidebarMenu from 'vue-sidebar-menu'
 //import the hello component
 import inicio from './components/inicio'
-//import the about component
+//Importa el componente de los artistas
 import artistas from './components/artistas'
+//Importa el componente de cada artista
+import perfilartista from './components/perfilArtista'
 //Importa el componente de las categorias
 import categorias from './components/categorias'
 //Importa el componente del registro de artistas
@@ -40,6 +42,8 @@ const routes = [
 { path: '/', component: inicio },
 //route for the about route of the web page
 { path: '/artistas', component: artistas },
+//route for the about route of the web page
+{ path: '/artistas/:id?', component: perfilartista },
 //Define la ruta de la pestaña categorias
 { path: '/categorias', component: categorias },
 //Define la ruta de la pestaña registro de artistas
