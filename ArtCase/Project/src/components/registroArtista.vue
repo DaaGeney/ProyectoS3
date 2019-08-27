@@ -85,9 +85,10 @@
           apellido: '',
           descripcion:'',
           tipo: null,
-
         },
-        tipo: [{ text: 'Seleccione uno', value: null }, 'Dibujante', 'Musico','Pintor'],
+        tipo: [{ text: 'Seleccione uno', value: null }, 'Caricatura','Cómic','Manga','Animación',
+        'Efectos especiales','Retrato','Fotografía','Pintura','Tipografía','Dibujo','Videos publicitarios',
+        'Música','Escultura','Cinematografía'],
         show: true
       }
     },

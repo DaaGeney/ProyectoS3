@@ -17,15 +17,59 @@
                         child: [
                             {
                                 href: { path: '/artistas' },
-                                title: 'Dibujantes'
+                                title: 'Animación'
                             },
                             {
                                 href: { path: '/artistas' },
-                                title: 'Musicos'
+                                title: 'Caricatura'
                             },
                             {
                                 href: { path: '/artistas' },
-                                title: 'Pintores'
+                                title: 'Cómic'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Cinematografía'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Dibujo'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Efectos especiales'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Escultura'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Fotografía'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Música'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Manga'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Pintura'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Retrato'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Tipografía'
+                            },
+                            {
+                                href: { path: '/artistas' },
+                                title: 'Videos publicitarios'
                             }
                         ]
                     },
