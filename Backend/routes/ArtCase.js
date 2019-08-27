@@ -7,24 +7,16 @@ const db = mongojs('DatabaseArtcase',[
 module.exports = app => {
     
     
-    app.get('/artista/:id', function (req, res) {
-        let id = req.params.id
-        if (id) {
-            db.artistas.find((err, artista) => {
-               let  respo = artistas.filter(element => element.id.includes(id))
-                console.log("id:" + id);
+    app.get('/artista/:id', (req, res) => {
+        
+        db.artista.filter({
+            _id: mongojs.ObjectId(req.params.id)
+        }, (err, response) => {
+            res.json({
+                response: response
+            })
+    })})
 
-                res.json({
-                    response: artista
-
-                })
-            });
-        } else {
-            res.send(entidad)
-            console.log("valiendo");
-
-        }
-    })
     app.get('/artista',(req,res)=>{
        db.artista.find((err,artista)=>{
         res.json({
@@ -34,7 +26,7 @@ module.exports = app => {
     })
 
 
-    app.post('/artCase', (req,res)=>{
+    app.post('/artista', (req,res)=>{
         let newArtcase =req.body;
         console.log(req.body);
         db.artista.insert(newArtcase, (err, response)=>{

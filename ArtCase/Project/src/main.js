@@ -16,11 +16,16 @@ import inicio from './components/inicio'
 import artistas from './components/artistas'
 //Importa el componente de las categorias
 import categorias from './components/categorias'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
 
 //Importando Boostrap
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
+Vue.use(VueAxios, axios)
 
 Vue.use(VueRouter) //Controla las rutas
 Vue.use(BootstrapVue) // Utilizado para los estilos de bootstrap
