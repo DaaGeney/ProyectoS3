@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="app">
     <h4>Listado de todos los artistas registrados</h4>
 
-    <div class="mt-4">
-      <b-card img-src="https://mobile-cdn.123rf.com/300wm/thesomeday123/thesomeday1231712/thesomeday123171200008/91087328-icono-de-perfil-de-avatar-predeterminado-para-mujer-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilustra.jpg?ver=6" img-alt="Card image" img-left class="mb-3" v-for="artista in artistas" :key="artista.id">
+    <div class="mt-4" v-for="artista in artistas" :key="artista.id">
+      <b-card @click="abrirArtista(artista)" img-src="https://mobile-cdn.123rf.com/300wm/thesomeday123/thesomeday1231712/thesomeday123171200008/91087328-icono-de-perfil-de-avatar-predeterminado-para-mujer-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilustra.jpg?ver=6" img-alt="Card image" img-left class="mb-3">
         <b-card-text>
           <h3>{{ artista.nombre }}</h3> <hr> <h5>{{ artista.apellido }}</h5> <p>Descripcion del artista: {{ artista.descripcion }}</p></b-card-text>
       </b-card>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <h1>Registrate!</h1> <hr>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       
@@ -22,12 +22,14 @@
 
       </b-form-group>
       <b-form-group id="input-group-7" label="Descripcion:" label-for="input-7">
-        <b-form-input
+        <b-form-textarea
           id="input-7"
           v-model="form.descripcion"
-          required
-          placeholder="Descripcion artista"
-        ></b-form-input>
+          requiered
+          placeholder="Hablanos un poco de ti!"
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
       </b-form-group>
 
       <b-form-group

@@ -1,5 +1,5 @@
 <template>
-    <div class="perfilArtista">
+    <div id="perfilArtista">
         <h1>
             Aqui va el nombre del artista.
         </h1>
