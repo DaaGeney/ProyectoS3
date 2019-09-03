@@ -1,5 +1,5 @@
 <template>
-  <div class="categorias" >
+  <div id="categorias" >
     <b-list-group>
       <b-list-group-item class="d-flex justify-content-between align-items-center">
         Cantantes

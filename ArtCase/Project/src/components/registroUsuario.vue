@@ -92,16 +92,16 @@
         })
       },
       crearArtista: function () {
-            var parametros={"nombre":"" + this.form.nombre, "apellido":""+ this.form.apellido,"email":""+this.form.email, "contraseña":""+this.form.contraseña, "tipo":""+this.form.tipo}
-			axios.post("http://localhost:3000/usuario/", parametros)
-				.then(function (response) {
-					if (response.data.error) {
-						//that.errorUserMessage = response.data.message;
-					} else {
-            console.log("Registro exitoso");
-            }
-				});
-		},
+        var parametros={"nombre":"" + this.form.nombre, "apellido":""+ this.form.apellido,"email":""+this.form.email, "contraseña":""+this.form.contraseña, "tipo":""+this.form.tipo}
+        axios.post("http://localhost:3000/usuario/", parametros)
+          .then(function (response) {
+            if (response.data.error) {
+              //that.errorUserMessage = response.data.message;
+            } else {
+              console.log("Registro exitoso");
+              }
+          });
+      },
     }
   }
 </script>
