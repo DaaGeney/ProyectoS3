@@ -118,6 +118,7 @@
         this.form.tipo = null
         this.form.contraseña = ''
         this.form.apellido = ''
+        this.form.file = null
         // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {
@@ -125,7 +126,7 @@
         })
       },
       crearArtista: function () {
-            var parametros={"nombre":"" + this.form.nombre, "apellido":""+ this.form.apellido,"email":""+this.form.email,"descripcion":""+this.form.descripcion, "contraseña":""+this.form.contraseña, "tipo":""+this.form.tipo}
+            var parametros={"nombre":"" + this.form.nombre, "apellido":""+ this.form.apellido,"email":""+this.form.email,"descripcion":""+this.form.descripcion, "contraseña":""+this.form.contraseña, "tipo":""+this.form.tipo, "file":""+this.form.file}
 			axios.post("http://localhost:3000/artista/", parametros)
 				.then(function (response) {
 					if (response.data.error) {
