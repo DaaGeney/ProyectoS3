@@ -8,6 +8,7 @@
           <h3 >
             <router-link @click.native="guardarId(artista._id)" to="perfilartista">{{ artista.nombre }}</router-link>
           </h3>
+
           <hr>
           <h5>{{ artista.apellido }}</h5>
           <p>Descripcion del artista: {{ artista.descripcion }}</p>
@@ -23,6 +24,7 @@ export default {
   data() {
     return {
       artistas: [],
+      File:[],
       usuario: ""
     };
   },
@@ -32,7 +34,6 @@ export default {
 
   methods: {
     obtenerUsuarios: function() {
-      
       var that = this;
       axios.get("http://localhost:3000/artista/").then(function(response) {
         console.log(response.data);
@@ -40,12 +41,12 @@ export default {
           //console.log("raios");
         } else {
           that.artistas = response.data.response;
-
+          that.File=response.data.response.file
+          console.log(File)
         }
       });
     },
     guardarId: function (id) {
-      console.log("Esta entrandoS")
       localStorage.setItem('id', JSON.stringify(id));
     }
 

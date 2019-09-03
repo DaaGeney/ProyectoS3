@@ -22,6 +22,8 @@ import categorias from './components/categorias'
 import registroartista from './components/registroArtista'
 //Importa el componente del registro de usuarios
 import registrousuario from './components/registroUsuario'
+//Importa el componente de acerca de
+import about from './components/about'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
@@ -54,6 +56,8 @@ const routes = [
 { path: '/registrarartista', component: registroartista },
 //Define la ruta de la pestaña registro de usuarios
 { path: '/registrarusuario', component: registrousuario },
+//Define la ruta de la pestaña acerca de
+{ path: '/acercade', component: about },
 { path: '/perfilartista', component: perfilartista }
 ]
 
