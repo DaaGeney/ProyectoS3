@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <h1>Registrate!</h1> <hr>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       

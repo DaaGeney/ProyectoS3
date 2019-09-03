@@ -15,6 +15,8 @@
     "bootstrap-vue": "^2.0.0-rc.28",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
+    "vue-cookie": "^1.1.4",
+    "vue-cookies": "^1.5.13",
     "vue-router": "^3.1.2",
     "vue-sidebar-menu": "^4.1.0"
   },

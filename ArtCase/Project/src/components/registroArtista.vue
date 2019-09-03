@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <h1>Registrate!</h1> <hr>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       
@@ -11,6 +11,7 @@
           placeholder="Digite su nombre"
         ></b-form-input>
       </b-form-group>
+
 
       <b-form-group id="input-group-4" label="Apellido:" label-for="input-4">
         <b-form-input
@@ -67,6 +68,13 @@
           required
         ></b-form-select>
       </b-form-group>
+      
+      <b-form-file
+      v-model="form.file"
+      :state="Boolean(form.file)"
+      placeholder="Choose a file or drop it here..."
+      drop-placeholder="Drop file here..."
+    ></b-form-file>
 
       <b-button type="submit" variant="primary">Registrar</b-button>
       <b-button type="reset" variant="danger">Cancelar</b-button>
@@ -80,6 +88,7 @@
     data() {
       return {
         form: {
+          file: null,
           email: '',
           nombre: '',
           apellido: '',

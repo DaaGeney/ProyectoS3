@@ -1,5 +1,5 @@
 <template>
-    <div class="perfilArtista">
+    <div class="perfilArtista" id="app">
         <h1>
             Aqui va el nombre del artista.
         </h1>
@@ -8,7 +8,15 @@
 </template>
 <script>
 export default {
-    name:"perfilArtista"
+   // name:"perfilArtista"
+   data(){
+       return{
+
+       }
+   },
+   methods:{
+       
+   }
 }
 </script>
 <style>

@@ -24,6 +24,9 @@ import registroartista from './components/registroArtista'
 import registrousuario from './components/registroUsuario'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueCookies from 'vue-cookies'
+// Require dependencies
+
  
 
 //Importando Boostrap
@@ -35,6 +38,7 @@ Vue.use(VueAxios, axios)
 Vue.use(VueRouter) //Controla las rutas
 Vue.use(BootstrapVue) // Utilizado para los estilos de bootstrap
 Vue.use(VueSidebarMenu) //  Utilizado para configurar la barra lateral
+Vue.use(VueCookies)
 
 //define your routes
 const routes = [
@@ -43,13 +47,14 @@ const routes = [
 //route for the about route of the web page
 { path: '/artistas', component: artistas },
 //route for the about route of the web page
-{ path: '/artistas/:id?', component: perfilartista },
+{ path: '/usuario', component: perfilartista },
 //Define la ruta de la pestaña categorias
 { path: '/categorias', component: categorias },
 //Define la ruta de la pestaña registro de artistas
 { path: '/registrarartista', component: registroartista },
 //Define la ruta de la pestaña registro de usuarios
-{ path: '/registrarusuario', component: registrousuario }
+{ path: '/registrarusuario', component: registrousuario },
+{ path: '/perfilartista', component: perfilartista }
 ]
 
 // Create the router instance and pass the `routes` option
