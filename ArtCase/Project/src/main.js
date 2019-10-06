@@ -16,6 +16,8 @@ import inicio from './components/inicio'
 import artistas from './components/artistas'
 //Importa el componente de cada artista
 import perfilartista from './components/perfilArtista'
+//Importa el componente de las categorias
+import categorias from './components/categorias'
 //Importa el componente del registro de artistas
 import registroartista from './components/registroArtista'
 //Importa el componente del registro de usuarios
@@ -48,12 +50,14 @@ const routes = [
 { path: '/artistas', component: artistas },
 //route for the about route of the web page
 { path: '/usuario', component: perfilartista },
+//Define la ruta de la pestaña categorias
+{ path: '/categorias', component: categorias },
 //Define la ruta de la pestaña registro de artistas
 { path: '/registrarartista', component: registroartista },
 //Define la ruta de la pestaña registro de usuarios
 { path: '/registrarusuario', component: registrousuario },
 //Define la ruta de la pestaña acerca de
-{ path: '/about', component: about },
+{ path: '/acercade', component: about },
 { path: '/perfilartista', component: perfilartista }
 ]
 
