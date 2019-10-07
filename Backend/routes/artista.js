@@ -17,6 +17,38 @@ module.exports = app => {
         })
     })
 
+    app.get('/artistas/categorias/:category', (req, res) => {
+        db.artista.find({
+            tipo: {
+                $in: [
+                  `${req.params.category}`
+                ]
+              }
+        }, (err, response) => {
+            res.json({
+                response: response
+            })
+        })
+    })
+
+    app.get('/artistas/busqueda/:nombre', (req, res) => {
+        db.artista.find({
+            $or: [
+                {
+                   'nombre': new RegExp(`${req.params.nombre}`, 'i')
+                }, {
+                   'apellido': new RegExp(`${req.params.nombre}`, 'i')
+                }, {
+                    'apodo': new RegExp(`${req.params.nombre}`, 'i')
+                 }
+            ]
+        }, (err, response) => {
+            res.json({
+                response: response
+            })
+        })
+    })
+
     app.get('/artista',(req,res)=>{
        db.artista.find((err,artista)=>{
         res.json({

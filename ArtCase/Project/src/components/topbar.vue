@@ -1,6 +1,6 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="dark" sticky="true">
-        <b-navbar-brand v-bind:to="'/'">ArtCase</b-navbar-brand>
+    <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top">
+        <b-navbar-brand :to="'/'">ArtCase</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -14,17 +14,17 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-form>
-              <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit">Ir</b-button>
+              <b-form-input v-model="text" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+              <b-button :to="'/artistas/categorias'" size="sm" class="my-2 my-sm-0" type="submit" @click="onClick()">Ir</b-button>
             </b-nav-form>
 
-            <b-nav-item-dropdown text="Idioma" right>
+            <!--<b-nav-item-dropdown text="Idioma" right>
               <b-dropdown-item href="#">EN</b-dropdown-item>
               <b-dropdown-item href="#">ES</b-dropdown-item>
               <b-dropdown-item href="#">RU</b-dropdown-item>
               <b-dropdown-item href="#">FA</b-dropdown-item>
             </b-nav-item-dropdown>
-
+            -->
             <!--
               <b-nav-item-dropdown right>
               Using 'button-content' slot
@@ -40,7 +40,24 @@
 
 <script>
     export default {
-        name: 'topbar'
+        name: 'topbar',
+
+        data() {
+          return {
+            text: ''
+          }
+        },
+
+        methods: {
+            /*
+            ----Se utiliza el $emit del $root para que pueda permitir ejecutar metodos de otro componente
+            */
+            onClick:function () {
+              //console.log("Boton ir");
+                this.$root.$emit('realizarBusqueda', this.text);
+            }
+            
+        }
     }
 </script>
 

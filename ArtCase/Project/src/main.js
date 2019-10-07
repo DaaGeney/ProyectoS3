@@ -10,10 +10,10 @@ import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 // Libreria que posibilita el uso de la barra lateral
 import VueSidebarMenu from 'vue-sidebar-menu'
+// Libreria de las notificaciones
+import Notifications from 'vue-notification'
 //import the hello component
 import inicio from './components/inicio'
-//Importa el componente de los artistas
-import artistas from './components/artistas'
 //Importa el componente de cada artista
 import perfilartista from './components/perfilArtista'
 //Importa el componente de las categorias
@@ -41,24 +41,23 @@ Vue.use(VueRouter) //Controla las rutas
 Vue.use(BootstrapVue) // Utilizado para los estilos de bootstrap
 Vue.use(VueSidebarMenu) //  Utilizado para configurar la barra lateral
 Vue.use(VueCookies)
+Vue.use(Notifications)
 
 //define your routes
 const routes = [
 //define the root url of the application.
 { path: '/', component: inicio },
 //route for the about route of the web page
-{ path: '/artistas', component: artistas },
-//route for the about route of the web page
 { path: '/usuario', component: perfilartista },
 //Define la ruta de la pestaña categorias
-{ path: '/categorias', component: categorias },
+{ path: '/artistas/categorias', component: categorias },
 //Define la ruta de la pestaña registro de artistas
 { path: '/registrarartista', component: registroartista },
 //Define la ruta de la pestaña registro de usuarios
 { path: '/registrarusuario', component: registrousuario },
 //Define la ruta de la pestaña acerca de
 { path: '/acercade', component: about },
-{ path: '/perfilartista', component: perfilartista }
+{ path: '/artistas/perfilartista', component: perfilartista }
 ]
 
 // Create the router instance and pass the `routes` option
