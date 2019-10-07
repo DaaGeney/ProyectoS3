@@ -30,6 +30,7 @@ module.exports = app => {
             })
         })
     })
+    
 
     app.get('/artistas/busqueda/:nombre', (req, res) => {
         db.artista.find({
