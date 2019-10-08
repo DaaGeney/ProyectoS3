@@ -16,11 +16,15 @@ module.exports = app => {
             })
         })
     })
-    app.get('/artistas/prueba/:email', (req, res) => {
+    app.get('/artistas/login/', (req, res) =>  {
+        console.log(req.body)
         db.artista.find({
-            $or: [
+            $and: [
                 {
-                   'email': new RegExp(`${req.params.email}`, 'i')
+                   'email': new RegExp(`${req.body.email}`, 'i')
+                },
+                {
+                    'nombre': new RegExp(`${req.body.nombre}`, 'i')
                 }
             ]
         }, (err, response) => {
