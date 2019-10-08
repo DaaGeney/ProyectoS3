@@ -16,6 +16,19 @@ module.exports = app => {
             })
         })
     })
+    app.get('/artistas/prueba/:email', (req, res) => {
+        db.artista.find({
+            $or: [
+                {
+                   'email': new RegExp(`${req.params.email}`, 'i')
+                }
+            ]
+        }, (err, response) => {
+            res.json({
+                response: response
+            })
+        })
+    })
 
     app.get('/artistas/categorias/:category', (req, res) => {
         db.artista.find({
