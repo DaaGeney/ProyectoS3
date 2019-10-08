@@ -149,6 +149,7 @@ export default {
       this.form.tipo = null;
       this.form.contraseña = "";
       this.form.apellido = "";
+      this.form.descripcion = "";
       this.form.url = "";
       this.form.file = null;
       // Trick to reset/clear native browser form validation state

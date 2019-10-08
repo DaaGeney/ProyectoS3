@@ -6,8 +6,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item v-bind:to="'/registrarartista'">Registrar artistas</b-nav-item>
-        <b-nav-item v-bind:to="'/registrarusuario'">Registrar usuarios</b-nav-item>
+        <b-nav-item v-bind:to="'/registrarartista'">{{this.labelRegistrarArtista}}</b-nav-item>
+        <b-nav-item v-bind:to="'/registrarusuario'">{{this.labelRegistrarUsuario}}</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -21,7 +21,7 @@
             type="submit"
             @click="onClick()"
           >Ir</b-button>
-          <b-button id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">Iniciar Sesion</b-button>
+          <b-button  id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">{{this.label}}</b-button>
         </b-nav-form>
 
         <div>
@@ -52,13 +52,9 @@
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <b-button
-                class="mt-2"
-                variant="outline-danger"
-                block
-                @click="toggleModal"
-              >Iniciar Sesion</b-button>
+              <b-button class="mt-2" variant="outline-danger" block @click="login" type="submit">Iniciar sesión</b-button>
               <b-button class="mt-3" variant="outline-dark" block @click="hideModal">Cancelar</b-button>
+              <notifications group="foo-css" position="top left" :speed="500" />
             </b-modal>
           </div>
         </div>
@@ -93,7 +89,12 @@ export default {
       form: {
         email: "",
         contraseña: ""
-      }
+      },
+      usuario: [],
+      estaIniciado: false,
+      label: "Iniciar sesión",
+      labelRegistrarArtista:"Registrar Artista",
+      labelRegistrarUsuario:"Registrar Usuario"
     };
   },
 
@@ -106,7 +107,11 @@ export default {
       this.$root.$emit("realizarBusqueda", this.text);
     },
     showModal() {
-      this.$refs["my-modal"].show();
+      if (this.estaIniciado == false) {
+        this.$refs["my-modal"].show();
+      } else {
+        this.logout();
+      }
     },
     hideModal() {
       this.$refs["my-modal"].hide();
@@ -115,6 +120,70 @@ export default {
       // We pass the ID of the button that we want to return focus to
       // when the modal has hidden
       this.$refs["my-modal"].toggle("#toggle-btn");
+    },
+    logout() {
+      this.estaIniciado = false;
+      this.cambiarLabel();
+      this.hideModal();
+      localStorage.removeItem("id");
+      localStorage.removeItem("usuarioID");
+    },
+    login() {
+      let that = this;
+      if (this.form.email != "" || this.form.contraseña != "") {
+        let parametros = {
+          email: "" + this.form.email,
+          contraseña: "" + this.form.contraseña
+        };
+        axios
+          .post("http://localhost:3000/artistas/login/", parametros)
+          .then(function(response) {
+            if (response.data.error) {
+              that.showalert("foo-css", "error");
+            } else {
+              that.usuario = response.data.response[0];
+              that.estaIniciado = true;
+              that.cambiarLabel();
+              that.hideModal();
+              console.log(that.usuario);
+              localStorage.setItem("usuarioID", that.usuario._id);
+              localStorage.setItem("id", that.usuario._id);
+            }
+          });
+        that.reset();
+      } else {
+        that.showalert("foo-css", "error");
+      }
+    },
+    cambiarLabel() {
+      if (this.estaIniciado) {
+        this.label = "Cerrar sesión";
+        this.labelRegistrarArtista="";
+        this.labelRegistrarUsuario=""
+      } else {
+        this.label = "Iniciar sesión";
+        this.labelRegistrarArtista="Registrar Artista";
+        this.labelRegistrarUsuario="Registrar Usuario"
+      }
+    },
+    reset() {
+      this.form.email = "";
+      this.form.contraseña = "";
+    },
+    showalert(group, type = "") {
+      //console.log("Entro 9");
+      const text = `
+        Los datos que has ingresado no coinciden con los de nuestra base de datos, verifica tu correo y digita nuevamente tu clave
+      `;
+      this.$notify({
+        group,
+        title: `Alto ahí vaquer@!`,
+        text,
+        type
+      });
+    },
+    clean(group) {
+      this.$notify({ group, clean: true });
     }
   }
 };

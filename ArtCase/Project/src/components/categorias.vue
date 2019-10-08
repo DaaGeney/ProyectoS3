@@ -109,7 +109,7 @@ export default {
     },
 
     guardarId: function(id) {
-      localStorage.clear();
+      localStorage.removeItem("id");
       localStorage.setItem("id", JSON.stringify(id));
       //console.log("Id que guarda 1ero", id);
     },

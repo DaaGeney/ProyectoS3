@@ -147,10 +147,20 @@ export default {
     obtenerArtista: function() {
       var that = this;
       let id = localStorage.getItem("id");
+      let usuarioId = localStorage.getItem("usuarioID");
+      if (id.replace(/['"]+/g, "") == usuarioId) {
+        console.log("Entrada 1");
+        
+        this.resetArray();
+      } else {
+        console.log("Entrada 2", id, usuarioId);
+        
+        this.portafolios = [];
+      }
       //console.log("id con el que obtiene 2do",id);
 
-      //localStorage.clear()
       id.replace(/['"]+/g, "");
+      //localStorage.clear()
       let url = "http://localhost:3000/artista/" + id;
       url = url.replace(/['"]+/g, "");
 
@@ -164,7 +174,6 @@ export default {
       });
     },
     obtenerPortafolios: function (artista) {
-      this.resetArray();
       var that = this;
       let url = "http://localhost:3000/artistas/perfilartista/portafolios/"+ artista._id;
       

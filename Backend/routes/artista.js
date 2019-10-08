@@ -1,5 +1,6 @@
 import mongojs from 'mongojs';
-//var jwt = require('jsonwebtoken')
+import { RSA_PKCS1_OAEP_PADDING } from 'constants';
+var jwt = require('jsonwebtoken')
 
 const db = mongojs('DatabaseArtcase',[
     'artista'
@@ -17,7 +18,8 @@ module.exports = app => {
             })
         })
     })
-    app.get('/artistas/login/', (req, res) =>  {
+    app.post('/artistas/login/', (req, res) =>  {
+
         db.artista.find({
             $and: [
                 {
@@ -28,20 +30,22 @@ module.exports = app => {
                 }
             ]
         }, (err, response) => {
+            
             if(response.length>0){
                 let tokenData = {
-                    username: req.body.nombre,
-                    contraseña: req.body.contraseña
+                    username: req.body.email
                     // ANY DATA
                 }
                 let token = jwt.sign(tokenData, 'Secret Password', {
-                    expiresIn: 60 * 60 * 24 // expires in 24 hours
-                 })
+                    expiresIn: 60 * 60 * 24 // expires in 24 hours 
+                })
                 res.send({
-                     token
+                     token: token,
+                     response: response
                 })
             }else{
-                res.status(401).send({
+
+                res.send({
                     error: "Usuario o contraseña invalidos"
                 })
             }
