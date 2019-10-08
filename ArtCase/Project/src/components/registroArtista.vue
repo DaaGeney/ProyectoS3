@@ -90,8 +90,8 @@
       ></b-form-file> <br><br>
       
 
-      <b-button type="submit" variant="primary">Registrar</b-button>
-      <b-button type="reset" variant="danger">Cancelar</b-button>
+      <b-button type="submit" variant="outline-danger">Registrar</b-button>
+      <b-button type="reset" variant="outline-dark">Cancelar</b-button>
     </b-form>
     
   </div>
@@ -136,7 +136,7 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       this.crearArtista();
-      alert("¡Registro exitoso!");
+      
       this.onReset(evt);
     },
     onReset(evt) {
@@ -144,7 +144,7 @@ export default {
       // Reset our form values
       this.form.email = "";
       this.form.telefono = "";
-      this.form.apodos = "";
+      this.form.apodo = "";
       this.form.nombre = "";
       this.form.tipo = null;
       this.form.contraseña = "";
@@ -183,9 +183,10 @@ export default {
         .post("http://localhost:3000/artista/", parametros)
         .then(function(response) {
           if (response.data.error) {
-            //that.errorUserMessage = response.data.message;
+            alert(response.data.error)
           } else {
-            console.log("Registro exitoso");
+          
+            alert("¡Registro exitoso!");
           }
         });
     }

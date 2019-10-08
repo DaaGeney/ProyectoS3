@@ -23,10 +23,10 @@ module.exports = app => {
         db.artista.find({
             $and: [
                 {
-                   'email': new RegExp(`${req.body.email}`, 'i')
+                   'email': new RegExp(`${req.body.email}`)
                 },
                 {
-                    'contraseña': new RegExp(`${req.body.contraseña}`, 'i')
+                    'contraseña': new RegExp(`${req.body.contraseña}`)
                 }
             ]
         }, (err, response) => {
@@ -97,12 +97,32 @@ module.exports = app => {
 
     app.post('/artista', (req,res)=>{
         let newArtcase =req.body;
-        db.artista.insert(newArtcase, (err, response)=>{
-            res.json({
-                //artCase Commit realizado
-                response
-            })
+        db.artista.find({
+            $and: [
+                {
+                   'email': new RegExp(`${newArtcase.email}`, 'i')
+                }
+            ]
+        }, (err, response) => {
+            
+            if(response.length>0){
+                
+                res.send({
+                     error: "Email registrado anteriormente"
+                })
+            }else{
+
+                db.artista.insert(newArtcase, (err, response)=>{
+                    res.json({
+                        //artCase Commit realizado
+                        response:response,
+                        estado:"Usuario registrado!"
+                    })
+                })
+            }
+            
         })
+        
         
     })
 
