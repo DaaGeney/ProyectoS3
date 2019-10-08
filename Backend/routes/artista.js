@@ -1,4 +1,5 @@
 import mongojs from 'mongojs';
+//var jwt = require('jsonwebtoken')
 
 const db = mongojs('DatabaseArtcase',[
     'artista'
@@ -17,20 +18,34 @@ module.exports = app => {
         })
     })
     app.get('/artistas/login/', (req, res) =>  {
-        console.log(req.body)
         db.artista.find({
             $and: [
                 {
                    'email': new RegExp(`${req.body.email}`, 'i')
                 },
                 {
-                    'nombre': new RegExp(`${req.body.nombre}`, 'i')
+                    'contraseña': new RegExp(`${req.body.contraseña}`, 'i')
                 }
             ]
         }, (err, response) => {
-            res.json({
-                response: response
-            })
+            if(response.length>0){
+                let tokenData = {
+                    username: req.body.nombre,
+                    contraseña: req.body.contraseña
+                    // ANY DATA
+                }
+                let token = jwt.sign(tokenData, 'Secret Password', {
+                    expiresIn: 60 * 60 * 24 // expires in 24 hours
+                 })
+                res.send({
+                     token
+                })
+            }else{
+                res.status(401).send({
+                    error: "Usuario o contraseña invalidos"
+                })
+            }
+            
         })
     })
 
@@ -78,7 +93,6 @@ module.exports = app => {
 
     app.post('/artista', (req,res)=>{
         let newArtcase =req.body;
-        console.log(req.body);
         db.artista.insert(newArtcase, (err, response)=>{
             res.json({
                 //artCase Commit realizado

@@ -17,7 +17,6 @@ module.exports = app => {
 
     app.post('/artistas/perfilartista/portafolios/', (req,res)=>{
         let newPortafolio =req.body;
-        console.log(req.body);
         db.portafolio.insert(newPortafolio, (err, response)=>{
             res.json({
                 response

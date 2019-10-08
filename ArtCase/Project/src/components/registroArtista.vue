@@ -93,6 +93,7 @@
       <b-button type="submit" variant="primary">Registrar</b-button>
       <b-button type="reset" variant="danger">Cancelar</b-button>
     </b-form>
+    
   </div>
 </template>
 
@@ -107,6 +108,7 @@ export default {
         apellido: "",
         descripcion: "",
         telefono:"",
+        contraseña:"",
         apodo:"",
         tipo: null
       },

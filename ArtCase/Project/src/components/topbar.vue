@@ -1,72 +1,135 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top">
-        <b-navbar-brand :to="'/'">ArtCase</b-navbar-brand>
+  <b-navbar toggleable="lg" type="dark" variant="dark" class="sticky-top">
+    <b-navbar-brand :to="'/'">ArtCase</b-navbar-brand>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-collapse id="nav-collapse" is-nav>
-        
-           <b-navbar-nav>
-            <b-nav-item v-bind:to="'/registrarartista'">Registrar artistas</b-nav-item>
-            <b-nav-item v-bind:to="'/registrarusuario'">Registrar usuarios</b-nav-item>
-          </b-navbar-nav>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item v-bind:to="'/registrarartista'">Registrar artistas</b-nav-item>
+        <b-nav-item v-bind:to="'/registrarusuario'">Registrar usuarios</b-nav-item>
+      </b-navbar-nav>
 
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input v-model="text" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
-              <b-button :to="'/artistas/categorias'" size="sm" class="my-2 my-sm-0" type="submit" @click="onClick()">Ir</b-button>
-            </b-nav-form>
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-form>
+          <b-form-input v-model="text" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+          <b-button
+            :to="'/artistas/categorias'"
+            size="sm"
+            class="my-2 my-sm-0"
+            type="submit"
+            @click="onClick()"
+          >Ir</b-button>
+          <b-button id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">Iniciar Sesion</b-button>
+        </b-nav-form>
 
-            <!--<b-nav-item-dropdown text="Idioma" right>
+        <div>
+          <div>
+            <b-modal ref="my-modal" hide-footer title="INICIAR SESION">
+              <div class="d-block text-center">
+                <b-form-group
+                  id="input-group-1"
+                  label="*Coreo electronico:"
+                  label-for="input-1"
+                  description
+                >
+                  <b-form-input
+                    id="input-1"
+                    v-model="form.email"
+                    type="email"
+                    required
+                    placeholder="Digite su correo electronico"
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group id="input-group-5" label="*Contraseña:">
+                  <b-form-input
+                    id="input-6"
+                    v-model="form.contraseña"
+                    type="password"
+                    required
+                    placeholder="Digite su contraseña"
+                  ></b-form-input>
+                </b-form-group>
+              </div>
+              <b-button
+                class="mt-2"
+                variant="outline-danger"
+                block
+                @click="toggleModal"
+              >Iniciar Sesion</b-button>
+              <b-button class="mt-3" variant="outline-dark" block @click="hideModal">Cancelar</b-button>
+            </b-modal>
+          </div>
+        </div>
+
+        <!--<b-nav-item-dropdown text="Idioma" right>
               <b-dropdown-item href="#">EN</b-dropdown-item>
               <b-dropdown-item href="#">ES</b-dropdown-item>
               <b-dropdown-item href="#">RU</b-dropdown-item>
               <b-dropdown-item href="#">FA</b-dropdown-item>
             </b-nav-item-dropdown>
-            -->
-            <!--
+        -->
+        <!--
               <b-nav-item-dropdown right>
               Using 'button-content' slot
               <template slot="button-content"><em>Usuario</em></template>
               <b-dropdown-item href="#">Perfil</b-dropdown-item>
               <b-dropdown-item href="#">Salir</b-dropdown-item>
             </b-nav-item-dropdown>                                     
-            -->
-          </b-navbar-nav>
-        </b-collapse>
-    </b-navbar>
+        -->
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
 
 <script>
-    export default {
-        name: 'topbar',
+export default {
+  name: "topbar",
 
-        data() {
-          return {
-            text: ''
-          }
-        },
+  data() {
+    return {
+      text: "",
+      form: {
+        email: "",
+        contraseña: ""
+      }
+    };
+  },
 
-        methods: {
-            /*
+  methods: {
+    /*
             ----Se utiliza el $emit del $root para que pueda permitir ejecutar metodos de otro componente
             */
-            onClick:function () {
-              //console.log("Boton ir");
-                this.$root.$emit('realizarBusqueda', this.text);
-            }
-            
-        }
+    onClick: function() {
+      //console.log("Boton ir");
+      this.$root.$emit("realizarBusqueda", this.text);
+    },
+    showModal() {
+      this.$refs["my-modal"].show();
+    },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+    },
+    toggleModal() {
+      // We pass the ID of the button that we want to return focus to
+      // when the modal has hidden
+      this.$refs["my-modal"].toggle("#toggle-btn");
     }
+  }
+};
 </script>
 
 <style >
-  .sticky-top{
-    position: sticky;
-    border-top: 5px;
-    border-top-style: ridge;
-    border-color: crimson;
-    margin-left: -50px;
-  }
+.sticky-top {
+  position: sticky;
+  border-top: 5px;
+  border-top-style: ridge;
+  border-color: crimson;
+  margin-left: -50px;
+}
+
+.my-sm-0 {
+  margin-right: 10px;
+}
 </style>
