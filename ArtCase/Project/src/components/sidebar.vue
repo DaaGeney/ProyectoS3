@@ -76,7 +76,7 @@
                         ]
                     },
                     {
-                        href: { path: '/about' },
+                        href: { path: '/acercade' },
                         title: 'Acerca de',
                         icon: 'fas fa-info'
                     }/*,
