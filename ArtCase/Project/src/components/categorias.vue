@@ -10,7 +10,7 @@
       <b-card
        v-for="artista in artistas"
         
-        img-alt="Card image"
+        img-alt="Foto perfil artista"
         img-left
         class="mb-3"
        
@@ -44,18 +44,17 @@ export default {
   },
   mounted() {
     //console.log("Montando...");
+    this.obtenerUsuarios(this.obtenerCategoria(null));
     
     //Metodo ejecutable desde el componente sidebar
     this.$root.$on('recargarComponente', (item) => {
       //console.log("Entrando a categoria");
-      
       this.obtenerUsuarios(this.obtenerCategoria(item));
     });
     this.$root.$on('realizarBusqueda', (param) => {
       //console.log("Entrando a filtro");
       this.obtenerUsuarios(this.realizarFiltro(param));
     });
-    this.obtenerUsuarios(this.obtenerCategoria(null));
   },
 
   methods: {

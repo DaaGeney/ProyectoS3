@@ -95,9 +95,8 @@
             */
             onItemClick: async function (event, item) {
                 //console.log("Laterales click");
-                this.$root.$emit('recargarComponente', item)
+                this.$root.$emit('recargarComponente', item);
                 //console.log("laterales cierra");
-                
             }
             
         }
