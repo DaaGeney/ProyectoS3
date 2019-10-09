@@ -35,9 +35,12 @@
               {{artista.nombre}} {{ artista.apellido }}
             </h3>
             <h3>{{ artista.tipo }}</h3>
+                        <hr />
+
+            <b-img v-bind:src="artista.file" class="imagenUser"></b-img>
           </div>
 
-          <hr />
+         <br>
           <h5>{{ artista.descripcion }}</h5>
           <h6>
             <i class="fas fa-phone-square"></i>
