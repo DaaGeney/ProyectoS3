@@ -19,7 +19,7 @@
         <b-card-text>
           <h3>
             <router-link :to="'perfilartista'">
-              <span v-on:click="guardarId(artista._id)">{{artista.nombre}} {{ artista.apellido }}</span>
+              <span class="span" v-on:click="guardarId(artista._id)">{{artista.nombre}} {{ artista.apellido }}</span>
             </router-link>
           </h3>
           <hr>

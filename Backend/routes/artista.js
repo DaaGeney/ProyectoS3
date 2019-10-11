@@ -1,14 +1,11 @@
 import mongojs from 'mongojs';
-import { RSA_PKCS1_OAEP_PADDING } from 'constants';
+
 var jwt = require('jsonwebtoken')
 
 const db = mongojs('DatabaseArtcase',[
     'artista'
 ])
-
-module.exports = app => {
-    
-    
+module.exports = app => {    
     app.get('/artista/:id', (req, res) => {
         db.artista.find({
             _id: mongojs.ObjectId(req.params.id)
@@ -98,10 +95,14 @@ module.exports = app => {
     app.post('/artista', (req,res)=>{
         let newArtcase =req.body;
         db.artista.find({
-            $and: [
+            $or: [
                 {
                    'email': new RegExp(`${newArtcase.email}`, 'i')
-                }
+                },
+                {
+                    'apodo': new RegExp(`${newArtcase.nombre}`, 'i')
+                 }
+                
             ]
         }, (err, response) => {
             

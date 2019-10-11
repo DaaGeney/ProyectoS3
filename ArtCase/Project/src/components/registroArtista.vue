@@ -14,12 +14,16 @@
           required
           placeholder="Digite su apellido"
         ></b-form-input>
+      </b-form-group>
+      <b-form-group id="input-group-7" label="*Nombre artistico:" label-for="input-7">
+        <b-form-input
+          id="input-2"
+          v-model="form.apodo"
+          required
+          placeholder="Digite su nombre artistico"
+        ></b-form-input>
+      </b-form-group>
 
-      </b-form-group>
-       <b-form-group id="input-group-7" label="*Nombre artistico:" label-for="input-7">
-        <b-form-input id="input-2" v-model="form.apodo" required placeholder="Digite su nombre artistico"></b-form-input>
-      </b-form-group>
-      
       <b-form-group id="input-group-5" label="*Telefono:" label-for="input-5" description>
         <b-form-input
           id="input-5"
@@ -27,7 +31,6 @@
           type="number"
           required
           placeholder="Digite su numero de contacto"
-          
         ></b-form-input>
       </b-form-group>
 
@@ -52,12 +55,16 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-1" label="Url perfil red social:" label-for="input-1" description>
+      <b-form-group
+        id="input-group-1"
+        label="Url perfil red social:"
+        label-for="input-1"
+        description
+      >
         <b-form-input
           id="input-1"
           v-model="form.url"
           type="url"
-          
           placeholder="Digite la url de su perfil"
         ></b-form-input>
       </b-form-group>
@@ -82,18 +89,16 @@
 
       <b-form-file
         accept="image/jpeg, image/png, image/gif"
-        v-model="form.file"
-        :state="Boolean(form.file)"
         placeholder="Seleccione un archivo para subir..."
         drop-placeholder="Arroje el archivo aquí..."
         @change="imageChanged"
-      ></b-form-file> <br><br>
-      
+      ></b-form-file>
+      <br />
+      <br />
 
       <b-button type="submit" variant="outline-danger">Registrar</b-button>
       <b-button type="reset" variant="outline-dark">Cancelar</b-button>
     </b-form>
-    
   </div>
 </template>
 
@@ -102,14 +107,14 @@ export default {
   data() {
     return {
       form: {
-        file: null,
+        file: "null",
         email: "",
         nombre: "",
         apellido: "",
         descripcion: "",
-        telefono:"",
-        contraseña:"",
-        apodo:"",
+        telefono: "",
+        contraseña: "",
+        apodo: "",
         tipo: null
       },
       tipo: [
@@ -129,14 +134,16 @@ export default {
         "Escultura",
         "Cinematografía"
       ],
-      show: true
+      show: true,
+      CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/artcase/upload",
+      CLOUDINARY_UPLOAD_PRESET: "wnr2raxk"
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       this.crearArtista();
-      
+
       this.onReset(evt);
     },
     onReset(evt) {
@@ -151,41 +158,57 @@ export default {
       this.form.apellido = "";
       this.form.descripcion = "";
       this.form.url = "";
-      this.form.file = null;
+      this.form.file = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
     },
-    imageChanged (e) {
-      var fileReader = new FileReader()
-      fileReader.readAsDataURL(e.target.files[0])
-      fileReader.onload = (e) => {
-        this.form.file = e.target.result
-      }
-      console.log(this.form)
+    imageChanged(e) {
+      var that = this;
+      var file = event.target.files[0];
+      var formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", this.CLOUDINARY_UPLOAD_PRESET);
+      this.form.file = "";
+      axios({
+        url: this.CLOUDINARY_URL,
+        method: "POST",
+        headers: {
+          "Content-type": "application/x-www-form-unlercoded"
+        },
+        data: formData
+      })
+        .then(function(res) {
+          console.log("Archivo");
+          console.log(that.form.file)
+          console.log(res.data.secure_url);
+          that.form.file = res.data.secure_url;
+          console.log(that.form.file)
+        })
+        .catch(function(err) {});
     },
     crearArtista: function() {
+      var that = this;
       var parametros = {
-        nombre: "" + this.form.nombre,
-        apellido: "" + this.form.apellido,
-        email: "" + this.form.email,
-        descripcion: "" + this.form.descripcion,
-        contraseña: "" + this.form.contraseña,
-        tipo: "" + this.form.tipo,
-        apodo: "" + this.form.apodo,
-        url: "" + this.form.url,
-        telefono: "" + this.form.telefono,
-        file: "" + this.form.file
+        nombre: "" + that.form.nombre,
+        apellido: "" + that.form.apellido,
+        email: "" + that.form.email,
+        descripcion: "" + that.form.descripcion,
+        contraseña: "" + that.form.contraseña,
+        tipo: "" + that.form.tipo,
+        apodo: "" + that.form.apodo,
+        url: "" + that.form.url,
+        telefono: "" + that.form.telefono,
+        file: "" + that.form.file
       };
       axios
         .post("http://localhost:3000/artista/", parametros)
         .then(function(response) {
           if (response.data.error) {
-            alert(response.data.error)
+            alert(response.data.error);
           } else {
-          
             alert("¡Registro exitoso!");
           }
         });
