@@ -13,5 +13,14 @@ env:
 
 script:
   - npm test
+  - sonar-scanner
 after_success:
   - npm run coverage
+
+ addons:
+  sonarcloud:
+    organization: "xelian-github"
+    token:
+      secure: ${SONAR_TOKEN}
+    branches:
+      - master
