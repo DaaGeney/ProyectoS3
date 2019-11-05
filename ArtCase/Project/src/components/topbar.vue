@@ -21,7 +21,7 @@
             type="submit"
             @click="onClick()"
           >Ir</b-button>
-          <b-button id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">{{this.label}}</b-button>
+          <!--<b-button id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">{{this.label}}</b-button>-->
         </b-nav-form>
 
         <div>
@@ -251,6 +251,6 @@ export default {
 }
 
 .my-sm-0 {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 </style>
