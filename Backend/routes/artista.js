@@ -128,6 +128,7 @@ module.exports = app => {
     })
 
     app.put('/artista/:id',(req,res) =>{
+    
         let updateArtcase = req.body
         db.artista.update(
             {_id: mongojs.ObjectId(req.params.id)},

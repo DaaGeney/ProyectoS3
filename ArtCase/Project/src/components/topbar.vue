@@ -21,7 +21,7 @@
             type="submit"
             @click="onClick()"
           >Ir</b-button>
-          <b-button  id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">{{this.label}}</b-button>
+          <b-button id="show-btn" size="sm" class="my-2 my-sm-0" @click="showModal">{{this.label}}</b-button>
         </b-nav-form>
 
         <div>
@@ -52,7 +52,13 @@
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <b-button class="mt-2" variant="outline-danger" block @click="login" type="submit">Iniciar sesión</b-button>
+              <b-button
+                class="mt-2"
+                variant="outline-danger"
+                block
+                @click="login"
+                type="submit"
+              >Iniciar sesión</b-button>
               <b-button class="mt-3" variant="outline-dark" block @click="hideModal">Cancelar</b-button>
               <notifications group="foo-css" position="top left" :speed="500" />
             </b-modal>
@@ -66,14 +72,24 @@
               <b-dropdown-item href="#">FA</b-dropdown-item>
             </b-nav-item-dropdown>
         -->
-        <!--
-              <b-nav-item-dropdown right>
-              Using 'button-content' slot
-              <template slot="button-content"><em>Usuario</em></template>
-              <b-dropdown-item href="#">Perfil</b-dropdown-item>
-              <b-dropdown-item href="#">Salir</b-dropdown-item>
-            </b-nav-item-dropdown>                                     
-        -->
+
+        <b-nav-item-dropdown right>
+          <template slot="button-content">
+            <em>{{this.label}}</em>
+          </template>
+          <b-button
+            id="show-btn"
+            size="sm"
+            class="my-2 my-sm-0"
+            @click="asignarArtista();showModal()"
+          >{{this.labelArtista}}</b-button>
+          <b-button
+            id="show-btn"
+            size="sm"
+            class="my-2 my-sm-0"
+            @click="asignarUsuario();showModal()"
+          >{{this.labelUsuario}}</b-button>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -90,11 +106,14 @@ export default {
         email: "",
         contraseña: ""
       },
+      labelArtista:"Artista",
+      labelUsuario:"Usuario",
+      actual: "",
       usuario: [],
       estaIniciado: false,
       label: "Iniciar sesión",
-      labelRegistrarArtista:"Registrar Artista",
-      labelRegistrarUsuario:"Registrar Usuario"
+      labelRegistrarArtista: "Registrar Artista",
+      labelRegistrarUsuario: "Registrar Usuario"
     };
   },
 
@@ -105,6 +124,13 @@ export default {
     onClick: function() {
       //console.log("Boton ir");
       this.$root.$emit("realizarBusqueda", this.text);
+    },
+    asignarUsuario() {
+      this.actual = "usuario";
+      console.log("Usuairo");
+    },
+    asignarArtista() {
+      this.actual = "artista";
     },
     showModal() {
       if (this.estaIniciado == false) {
@@ -127,6 +153,8 @@ export default {
       this.hideModal();
       localStorage.removeItem("id");
       localStorage.removeItem("usuarioID");
+      localStorage.removeItem("sesionid");
+      localStorage.removeItem("usuariosesionID");
     },
     login() {
       let that = this;
@@ -135,21 +163,41 @@ export default {
           email: "" + this.form.email,
           contraseña: "" + this.form.contraseña
         };
-        axios
-          .post("http://localhost:3000/artistas/login/", parametros)
-          .then(function(response) {
-            if (response.data.error) {
-              that.showalert("foo-css", "error");
-            } else {
-              that.usuario = response.data.response[0];
-              that.estaIniciado = true;
-              that.cambiarLabel();
-              that.hideModal();
-              console.log(that.usuario);
-              localStorage.setItem("usuarioID", that.usuario._id);
-              localStorage.setItem("id", that.usuario._id);
-            }
-          });
+        if (this.actual == "artista") {
+          localStorage.removeItem("sesionid");
+          localStorage.removeItem("usuariosesionID");
+          axios
+            .post("http://localhost:3000/artistas/login/", parametros)
+            .then(function(response) {
+              if (response.data.error) {
+                that.showalert("foo-css", "error");
+              } else {
+                that.usuario = response.data.response[0];
+                that.estaIniciado = true;
+                that.cambiarLabel();
+                that.hideModal();
+                console.log(that.usuario);
+                localStorage.setItem("usuarioID", that.usuario._id);
+                localStorage.setItem("id", that.usuario._id);
+              }
+            });
+        } else {
+          axios
+            .post("http://localhost:3000/usuario/login/", parametros)
+            .then(function(response) {
+              if (response.data.error) {
+                that.showalert("foo-css", "error");
+              } else {
+                that.usuario = response.data.response[0];
+                that.estaIniciado = true;
+                that.cambiarLabel();
+                that.hideModal();
+                console.log(that.usuario);
+                localStorage.setItem("usuariosesionID", that.usuario._id);
+                localStorage.setItem("sesionid", that.usuario._id);
+              }
+            });
+        }
         that.reset();
       } else {
         that.showalert("foo-css", "error");
@@ -158,12 +206,16 @@ export default {
     cambiarLabel() {
       if (this.estaIniciado) {
         this.label = "Cerrar sesión";
-        this.labelRegistrarArtista="";
-        this.labelRegistrarUsuario=""
+        this.labelUsuario = "";
+        this.labelArtista = "Cerrar sesión"
+        this.labelRegistrarArtista = "";
+        this.labelRegistrarUsuario = "";
       } else {
         this.label = "Iniciar sesión";
-        this.labelRegistrarArtista="Registrar Artista";
-        this.labelRegistrarUsuario="Registrar Usuario"
+        this.labelUsuario = "Usuario";
+        this.labelArtista = "Artista"
+        this.labelRegistrarArtista = "Registrar Artista";
+        this.labelRegistrarUsuario = "Registrar Usuario";
       }
     },
     reset() {

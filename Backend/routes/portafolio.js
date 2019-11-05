@@ -24,4 +24,27 @@ module.exports = app => {
         })
         
     });
+
+    app.put('/artistas/perfilartista/portafolios/:id',(req,res) =>{
+        let updateArtcase = req.body
+        db.portafolio.update(
+            {_id: mongojs.ObjectId(req.params.id)},
+            updateArtcase,
+            {},
+            (err, response)=>{
+                res.json({
+                    response
+                })
+            }
+        )
+    });
+    app.delete('/artistas/perfilartista/portafolios/:id', (req,res)=>{
+        db.portafolio.remove({
+            _id: mongojs.ObjectId(req.params.id)
+        }, (err,response)=>{
+            res.json({
+                response: 'Eliminado correctamente'
+            })
+        })
+    })
 }
