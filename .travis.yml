@@ -17,7 +17,7 @@ script:
 after_success:
   - npm run coverage
 
- addons:
+addons:
   sonarcloud:
     organization: "xelian-github"
     token:
