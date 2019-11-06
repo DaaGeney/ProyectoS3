@@ -62,14 +62,35 @@ module.exports = app => {
 
     app.post('/usuario', (req,res)=>{
         let newArtcase =req.body;
-        console.log(req.body);
-        db.usuario.insert(newArtcase, (err, response)=>{
-            res.json({
-                //artCase Commit realizado
-                response
-            })
+        db.usuario.find({
+            $or: [
+                {
+                   'email': new RegExp(`${newArtcase.email}`, 'i')
+                },
+                {
+                    'username': new RegExp(`${newArtcase.username}`, 'i')
+                 }
+                
+            ]
+        }, (err, response) => {
+            
+            if(response.length>0){
+                
+                res.send({
+                     error: "Email registrado anteriormente"
+                })
+            }else{
+
+                db.usuario.insert(newArtcase, (err, response)=>{
+                    res.json({
+                        //artCase Commit realizado
+                        response:response,
+                        estado:"Usuario registrado!"
+                    })
+                })
+            }
+            
         })
-        
     })
 
     app.put('/usuario/:id',(req,res) =>{

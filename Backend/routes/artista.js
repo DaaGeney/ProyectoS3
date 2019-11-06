@@ -100,7 +100,7 @@ module.exports = app => {
                    'email': new RegExp(`${newArtcase.email}`, 'i')
                 },
                 {
-                    'apodo': new RegExp(`${newArtcase.nombre}`, 'i')
+                    'apodo': new RegExp(`${newArtcase.apodo}`, 'i')
                  }
                 
             ]

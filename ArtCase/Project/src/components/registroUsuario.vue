@@ -119,7 +119,7 @@ export default {
         .post("http://localhost:3000/usuario/", parametros)
         .then(function(response) {
           if (response.data.error) {
-            //that.errorUserMessage = response.data.message;
+            alert(response.data.error);
           } else {
             console.log("Registro exitoso");
           }
